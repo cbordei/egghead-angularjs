@@ -7,6 +7,12 @@ app.config(function ($routeProvider) {
       controller:"AppCtrl"
     }
   );
+  $routeProvider.when('/sss',
+    {
+      templateUrl: "app2.html",
+      controller:"AppCtrl"
+    }
+  );
 });
 
 app.controller("AppCtrl", function ($scope) {

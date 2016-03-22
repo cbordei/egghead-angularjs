@@ -32,6 +32,10 @@ app.provider("game", function () {
     setType: function(value) {
       type = value;
     },
+    isEnabled: function(value) {
+
+    },
+
     $get: function () {
       return {
         title: type + "Craft"
@@ -41,7 +45,9 @@ app.provider("game", function () {
 });
 
 app.config(function (gameProvider) {
-  gameProvider.setType("War");
+  if gameProvider.isEnabled {
+    gameProvider.setType("War");
+  }
 });
 
 app.controller("AppCtrl", function ($scope, game) {

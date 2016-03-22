@@ -1,0 +1,10 @@
+<h4>{{ item.label }}</h4>
+<div>Name of widget "{{item.name}}", @ nest level {{item.level - 1}}</div>
+<div>attr1: {{item.name}}</div>
+<div>attr1: {{item.label}}</div>
+<div>attr2: {{item.type}}</div>
+
+<button ng-if="item.type == 'StructuredMessage::Widgets::Form'" ng-click="addSubSection(item)">Add sub section</button>
+<button ng-if="item.type == 'StructuredMessage::Widgets::Section'" ng-click="addSubItem(item)">Add sub item</button>
+<button ng-click="addSiblingItem(items, $index)">Add sibling</button>
+<button ng-click="deleteMe(items, $index)">Delete me</button>

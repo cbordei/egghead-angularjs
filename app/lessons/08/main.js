@@ -40,7 +40,7 @@ myApp.factory('Avengers', function () {
       character: 'Agent Maria Hill'
     },
     {
-      name: 'Stellan Skarsgård',
+      name: 'Stellan Skarsgård', 
       character: 'Selvig'
     },
     {
