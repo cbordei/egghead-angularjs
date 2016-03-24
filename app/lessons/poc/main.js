@@ -83,9 +83,6 @@ app.directive("buttons", function() {
         });
       }
 
-      scope.deleteMe = function(items, position) {
-        items.splice(position, 1);
-      }
     }
   };
 });
@@ -96,10 +93,14 @@ app.directive("edit", function() {
     transclude:true,
     templateUrl: "edit_buttons.html",
     link: function(scope) {
-      scope.isEditEnabled = true;
+      scope.isEditEnabled = false;
 
       scope.toggleEdit = function(item) {
         scope.isEditEnabled = !scope.isEditEnabled;
+      }
+
+      scope.deleteMe = function(items, position) {
+        items.splice(position, 1);
       }
     }
   };

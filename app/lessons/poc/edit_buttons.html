@@ -1,4 +1,5 @@
 <div>
   <button ng-show="!isEditEnabled" ng-click="toggleEdit(item)"> Edit </button>
   <button ng-show="isEditEnabled" ng-click="toggleEdit(item)"> Done </button>
+  <button ng-click="deleteMe(items, $index)">x</button>
 </div>
