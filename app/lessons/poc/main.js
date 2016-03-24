@@ -49,36 +49,6 @@ function FormCtrl($scope, Form) {
 
 }
 
-// app.directive("widget", function() {
-//   return {
-//     restrict: "E",
-//     transclude:true,
-//     templateUrl:'widget_stas.html',
-//     link: function (scope) {
-//       // scope.isContentVisivle = true;
-//       // scope.toggleContent = function () {
-//       //   scope.isContentVisible = !scope.isContentVisible;
-//       // };
-//       scope.addSiblingItem = function(items, position) {
-//         items.splice(position + 1, 0, {
-//           name: 'full_name',
-//           label: 'Full Name of person',
-//           type: 'StructuredMessage::Widgets::Input',
-//         });
-//       }
-//
-//       scope.addSubSection = function(item) {
-//         item.widgets.push({
-//           name: 'full_name',
-//           label: 'Full Name of person',
-//           type: 'StructuredMessage::Widgets::Section',
-//           mandatory: false,
-//           widgets: []
-//         });
-//       }
-//     }
-//   };
-// });
 
 app.directive("buttons", function() {
   return {
@@ -126,7 +96,7 @@ app.directive("edit", function() {
     transclude:true,
     templateUrl: "edit_buttons.html",
     link: function(scope) {
-      scope.isEditEnabled = false;
+      scope.isEditEnabled = true;
 
       scope.toggleEdit = function(item) {
         scope.isEditEnabled = !scope.isEditEnabled;
@@ -150,7 +120,7 @@ app.directive("editwidget", function () {
     templateUrl: "edit_widget.html",
     link: function(scope) {
       scope.hasCollection = function(item) {
-        return item.hasOwnProperty('collection')
+        return item.type == 'StructuredMessage::Widgets::Checkbox' || item.type == 'StructuredMessage::Widgets::Radio'
       }
 
       scope.addOption = function(item) {
@@ -172,7 +142,7 @@ app.directive("showwidget", function () {
     templateUrl: "show_widget.html",
     link: function(scope) {
       scope.hasCollection = function(item) {
-        return item.hasOwnProperty('collection')
+        return item.type == 'StructuredMessage::Widgets::Checkbox' || item.type == 'StructuredMessage::Widgets::Radio'
       }
     }
   }

@@ -5,34 +5,23 @@
   <div class="pull-right">
     <edit />
   </div>
-
   <div>
-
     <!-- directiva pt select unde decid ce arat -->
     <div>
       <widgettype />
     </div>
-
-
     <!-- directiva pt show -->
     <div ng-if="!isEditEnabled">
       <showwidget />
     </div>
-
-
-
     <!-- directiva pt edit -->
     <div ng-if="isEditEnabled">
       <editwidget />
     </div>
-
-    <!-- <widget /> -->
-
     <div>
       <buttons />
     </div>
   </div>
-
   <div>
     <div ng-include="'template.html'"></div>
   </div>

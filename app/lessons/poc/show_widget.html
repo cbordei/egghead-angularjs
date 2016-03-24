@@ -3,8 +3,8 @@
   name: <b>{{item.name}}</b>
 </div>
 
-<div ng-if="item.hasOwnProperty('collection')">
+<div ng-if="hasCollection(item)">
   <fieldset  data-ng-repeat="option in item.collection">
-    label: <b>{{option.label}}</b>
+    option {{$index}}: <b>{{option.label}}</b>
   </fieldset>
 </div>
