@@ -11,10 +11,12 @@
   </div>
 
   <div ng-if="hasCollection(item)">
-    <fieldset  data-ng-repeat="option in item.collection">
-      <input class="form-control" type="text" ng-model="option.label" placeholder="Enter label">
-      <button class="remove" ng-show="$last" ng-click="deleteMe(item.collection, $index)">-</button>
-    </fieldset>
-    <button class="addfields" ng-click="addOption(item)">Add fields</button>
+    <div class="form-group">
+      <fieldset  data-ng-repeat="option in item.collection">
+        <input class="form-control" type="text" ng-model="option.label" placeholder="Enter label">
+        <button class="btn btn-danger glyphicon glyphicon-trash" ng-show="$last" ng-click="deleteMe(item.collection, $index)"/>
+      </fieldset>
+    </div>
+    <button class="btn btn-success" ng-click="addOption(item)">Add fields</button>
   </div>
 </div>

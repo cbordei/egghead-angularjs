@@ -1,5 +1,5 @@
-<div>
-  <button class="btn btn-primary" ng-show="!isEditEnabled" ng-click="toggleEdit(item)"> Edit </button>
-  <button class="btn btn-success" ng-show="isEditEnabled" ng-click="toggleEdit(item)"> Done </button>
+<div class="btn-toolbar">
+  <button class="btn btn-primary glyphicon glyphicon-edit" ng-show="!isEditEnabled" ng-click="toggleEdit(item)"/>
+  <button class="btn btn-success glyphicon glyphicon-ok" ng-show="isEditEnabled" ng-click="toggleEdit(item)"/>
   <button class="btn btn-danger glyphicon glyphicon-trash" ng-click="deleteMe(items, $index)"/>
 </div>
