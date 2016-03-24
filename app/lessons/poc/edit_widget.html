@@ -1,0 +1,12 @@
+<h4><input ng-model="item.label"/></h4>
+<div>
+  name: <input ng-model="item.name"/>
+</div>
+
+<div ng-if="hasCollection(item)">
+  <fieldset  data-ng-repeat="option in item.collection">
+    <input type="text" ng-model="option.label" placeholder="Enter label">
+    <button class="remove" ng-show="$last" ng-click="deleteMe(item.collection, $index)">-</button>
+  </fieldset>
+  <button class="addfields" ng-click="addOption(item)">Add fields</button>
+</div>

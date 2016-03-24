@@ -1,0 +1,9 @@
+<div ng-show="isEditEnabled">
+  <div ng-if="item.type != 'StructuredMessage::Widgets::Form'">
+    <div ng-if="item.type != 'StructuredMessage::Widgets::Section'">
+      <select ng-model="item.type">
+        <option ng-selected="item.type == widgetType" ng-repeat="widgetType in widgetTypes" ng-value="widgetType">{{ widgetType }}</option>
+      </select>
+    </div>
+  </div>
+</div>

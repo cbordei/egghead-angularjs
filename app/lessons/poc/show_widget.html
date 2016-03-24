@@ -1,0 +1,10 @@
+<h4><b>{{ item.label }}</b></h4>
+<div>
+  name: <b>{{item.name}}</b>
+</div>
+
+<div ng-if="item.hasOwnProperty('collection')">
+  <fieldset  data-ng-repeat="option in item.collection">
+    label: <b>{{option.label}}</b>
+  </fieldset>
+</div>
