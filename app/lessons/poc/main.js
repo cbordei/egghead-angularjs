@@ -3,34 +3,14 @@ var app = angular.module('MyApp', []);
 app.factory('Form', function () {
   var Form = {};
   Form = {
-        name: 'first one',
         template: {
-          name: 'form',
-          label: 'superform',
+          name: '',
+          label: '',
           type: 'StructuredMessage::Widgets::Form',
           widgets: [
-              {
-              name: 'person',
-              label: 'contact persons',
-              type: 'StructuredMessage::Widgets::Section',
-              repeatable: true,
-              widgets: [
-                  {
-                  name: 'full_name',
-                  label: 'Full Name of person',
-                  type: 'StructuredMessage::Widgets::Input',
-                  },
-                  {
-                  name: 'last_name',
-                  label: 'last Name of person2',
-                  type: 'StructuredMessage::Widgets::Input',
-                  mandatory: true,
-                  }
-                ]
-              }
-            ]
-          }
-        };
+          ]
+        }
+      };
   return Form;
 });
 
@@ -46,7 +26,6 @@ function FormCtrl($scope, Form) {
   $scope.item = {
     widgets: [$scope.form.template]
   }
-
 }
 
 
@@ -58,8 +37,8 @@ app.directive("buttons", function() {
     link: function(scope) {
       scope.addSubSection = function(item) {
         item.widgets.push({
-          name: 'full_name',
-          label: 'contact persons',
+          name: '',
+          label: '',
           type: 'StructuredMessage::Widgets::Section',
           mandatory: false,
           widgets: []
@@ -68,18 +47,10 @@ app.directive("buttons", function() {
 
       scope.addSubItem = function(item) {
         item.widgets.push({
-          name: 'full_name',
-          label: 'Full Name of person',
+          name: '',
+          label: '',
           type: 'StructuredMessage::Widgets::Input',
           mandatory: false,
-        });
-      }
-
-      scope.addSiblingItem = function(items, position) {
-        items.splice(position + 1, 0, {
-          name: 'full_name',
-          label: 'Full Name of person',
-          type: 'StructuredMessage::Widgets::Input',
         });
       }
 
@@ -93,7 +64,7 @@ app.directive("edit", function() {
     transclude:true,
     templateUrl: "edit_buttons.html",
     link: function(scope) {
-      scope.isEditEnabled = false;
+      scope.isEditEnabled = true;
 
       scope.toggleEdit = function(item) {
         scope.isEditEnabled = !scope.isEditEnabled;
@@ -122,6 +93,12 @@ app.directive("editwidget", function () {
     link: function(scope) {
       scope.hasCollection = function(item) {
         return item.type == 'StructuredMessage::Widgets::Checkbox' || item.type == 'StructuredMessage::Widgets::Radio'
+      }
+
+      scope.isFormElement = function(item) {
+        return item.type == 'StructuredMessage::Widgets::Input' ||
+          item.type == 'StructuredMessage::Widgets::Checkbox' ||
+          item.type == 'StructuredMessage::Widgets::Radio'
       }
 
       scope.addOption = function(item) {
