@@ -1,21 +1,78 @@
 var app = angular.module('MyApp', []);
 
-app.factory('Form', function () {
-  var Form = {};
-  Form = {
-        template: {
-          name: '',
-          label: '',
-          type: 'StructuredMessage::Widgets::Form',
-          widgets: [
-          ]
+app.factory('Form', ['$http', function($http) {
+    function Form(formData) {
+        if (formData) {
+          this.setData(formData);
+        } else {
+          this.setData({
+            template: {
+              name: '',
+              label: '',
+              type: 'StructuredMessage::Widgets::Form',
+              widgets: [
+              ]
+            }
+          });
         }
-      };
-  return Form;
+    };
+    Form.prototype = {
+        setData: function(formData) {
+            angular.extend(this, formData);
+        },
+        load: function(id) {
+            var scope = this;
+            // $http.get('ourserver/books/' + bookId).success(function(formData) {
+            //     scope.setData(formData);
+            // });
+        },
+        delete: function() {
+            // $http.delete('ourserver/books/' + bookId);
+        },
+        update: function() {
+            // $http.put('ourserver/books/' + bookId, this);
+        },
+
+    };
+    return Form;
+}]);
+
+app.factory('Widget', function() {
+    function Widget(type) {
+        this.setData({
+            name: '',
+            label: '',
+            type: type,
+            mandatory: false,
+        });
+    };
+    Widget.prototype = {
+        setData: function(inputData) {
+            angular.extend(this, inputData);
+        }
+    };
+    return Widget;
+});
+
+app.factory('Section', function() {
+    function Section(type) {
+        this.setData({
+            name: '',
+            label: '',
+            type: 'StructuredMessage::Widgets::Section',
+            widgets: []
+        });
+    };
+    Section.prototype = {
+        setData: function(inputData) {
+            angular.extend(this, inputData);
+        }
+    };
+    return Section;
 });
 
 function FormCtrl($scope, Form) {
-  $scope.form = Form;
+  $scope.form = new Form();
   $scope.widgetTypes = [
     'StructuredMessage::Widgets::Input',
     'StructuredMessage::Widgets::Checkbox',
@@ -29,34 +86,25 @@ function FormCtrl($scope, Form) {
 }
 
 
-app.directive("buttons", function() {
+app.directive("buttons", ['Widget', 'Section', function(Widget, Section) {
   return {
     restrict: "E",
     transclude:true,
     templateUrl:'crud_buttons.html',
     link: function(scope) {
       scope.addSubSection = function(item) {
-        item.widgets.push({
-          name: '',
-          label: '',
-          type: 'StructuredMessage::Widgets::Section',
-          mandatory: false,
-          widgets: []
-        });
+        section = new Section();
+        item.widgets.push(section);
       }
 
       scope.addSubItem = function(item) {
-        item.widgets.push({
-          name: '',
-          label: '',
-          type: 'StructuredMessage::Widgets::Input',
-          mandatory: false,
-        });
+        widget = new Widget('StructuredMessage::Widgets::Input');
+        item.widgets.push(widget);
       }
 
     }
   };
-});
+}]);
 
 app.directive("edit", function() {
   return {
